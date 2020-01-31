@@ -1,4 +1,4 @@
-package com.k0d4black.tuli
+package com.github.odaridavid.tuli
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

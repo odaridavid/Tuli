@@ -1,4 +1,4 @@
-package com.k0d4black.tuli
+package com.github.odaridavid.tuli
 
 import org.junit.Test
 
