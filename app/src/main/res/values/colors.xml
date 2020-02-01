@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffab40</color>
-    <color name="colorPrimaryDark">#c77c02</color>
     <color name="colorPrimaryLight">#ffdd71</color>
+    <!-- Grey for status bar-->
+    <color name="colorPrimaryDark">#cccccc</color>
 
     <color name="colorSecondary">#64ffda</color>
     <color name="colorSecondaryLight">#9effff</color>

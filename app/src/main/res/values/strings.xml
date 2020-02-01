@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Tuli</string>
     <string name="title_home">Home</string>
+    <string name="title_sign_in">Sign In</string>
+    <string name="cd_default_view_no_tasks">No Tasks Running Image View</string>
+    <string name="info_default_view">Let\'s get started</string>
 </resources>
