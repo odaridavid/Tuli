@@ -2,6 +2,8 @@ package com.github.odaridavid.tuli.di.modules
 
 import com.github.odaridavid.tuli.MainActivity
 import com.github.odaridavid.tuli.di.scopes.ActivityScope
+import com.github.odaridavid.tuli.tasks.AddTasksActivity
+import com.github.odaridavid.tuli.tasks.TasksModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -14,10 +16,14 @@ import dagger.android.ContributesAndroidInjector
  *
  **/
 @Module
-abstract class ActivityBindingModule {
+internal abstract class ActivityBindingModule {
 
     @ActivityScope
-    @ContributesAndroidInjector
-    abstract fun mainActivity(): MainActivity
+    @ContributesAndroidInjector(modules = [TasksModule::class, ViewModelModule::class])
+    internal abstract fun contributeMainActivity(): MainActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [TasksModule::class, ViewModelModule::class])
+    internal abstract fun contributeAddTasksActivity(): AddTasksActivity
 
 }

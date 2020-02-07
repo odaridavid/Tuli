@@ -2,6 +2,8 @@ package com.github.odaridavid.tuli.di
 
 import com.github.odaridavid.tuli.TuliApplication
 import com.github.odaridavid.tuli.di.modules.ActivityBindingModule
+import com.github.odaridavid.tuli.di.modules.AppModule
+import com.github.odaridavid.tuli.di.modules.DatabaseModule
 import com.github.odaridavid.tuli.di.modules.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -19,13 +21,16 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        ActivityBindingModule::class,
-        ViewModelModule::class
+        AppModule::class,
+        DatabaseModule::class,
+        ActivityBindingModule::class
     ]
 )
 interface AppComponent : AndroidInjector<TuliApplication> {
+
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance application: TuliApplication): AppComponent
     }
+
 }
