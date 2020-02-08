@@ -24,4 +24,4 @@ inline fun <reified T> Activity.navigateTo(noinline intentExtras: ((Intent) -> U
     startActivity(intent)
 }
 
-fun requireNotBlank(text: String): String = if (text.isBlank()) "Untitled Task" else text
+

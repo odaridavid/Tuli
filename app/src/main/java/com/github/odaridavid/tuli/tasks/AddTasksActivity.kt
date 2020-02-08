@@ -9,7 +9,9 @@ import com.github.odaridavid.tuli.R
 import com.github.odaridavid.tuli.base.BaseActivity
 import com.github.odaridavid.tuli.commons.navigateTo
 import com.github.odaridavid.tuli.commons.requireNotBlank
+import com.github.odaridavid.tuli.commons.showToast
 import dagger.android.AndroidInjection
+import org.threeten.bp.ZonedDateTime
 
 class AddTasksActivity : BaseActivity() {
 
@@ -32,16 +34,28 @@ class AddTasksActivity : BaseActivity() {
 
         taskTitleEditText = findViewById(R.id.task_title_edit_text)
 
+        showToast(getCurrentTime())
+
     }
 
     fun onStartTask(view: View) {
-        //TODO Get Current Time and End Time
-        //TODO Setup Alarm Manager and work manager
+        //Create Task Object
+        val startTime = getCurrentTime()
+        val endTime = "04:00"
+        val date = getDateToday()
         val title = requireNotBlank(taskTitleEditText.text.toString())
-        val task = Task(startTime = "", endTime = "", title = title, date = "")
+        val task = Task(startTime = startTime, endTime = endTime, title = title, date = date)
+        //Save Task
         tasksViewModel.insert(task)
+        //Clear Fields
         taskTitleEditText.setText("")
+        //Navigate Back
         navigateTo<MainActivity>()
         finish()
     }
+
+    private fun getCurrentTime(): String = ZonedDateTime.now().run { "$hour:$minute" }
+
+    private fun getDateToday(): String = ZonedDateTime.now().run { "$dayOfMonth-$monthValue-$year" }
+
 }

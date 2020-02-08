@@ -15,29 +15,18 @@ import com.github.odaridavid.tuli.R
  * On 07/02/20
  *
  **/
-class TasksAdapter : ListAdapter<Task, RecyclerView.ViewHolder>(TasksDiffUtil) {
+class TasksAdapter(val deleteOperation: (Task) -> Unit) :
+    ListAdapter<Task, RecyclerView.ViewHolder>(TasksDiffUtil) {
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0) TYPE_HEADER else TYPE_ITEM
-    }
-
-    override fun getItemCount(): Int {
-        return super.getItemCount() + 1
+    fun deleteItem(position: Int) {
+        val task = getItem(position)
+        deleteOperation(task)
+        notifyItemRemoved(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            TYPE_HEADER -> {
-                val view = createView(parent, R.layout.item_task)
-                TasksHeaderViewHolder(view)
-            }
-            TYPE_ITEM -> {
-                val view = createView(parent, R.layout.item_tasks_header)
-                TasksViewHolder(view)
-            }
-            else -> throw IllegalStateException("Unknown View Type")
-        }
-
+        val view = createView(parent, R.layout.item_task)
+        return TasksViewHolder(view)
     }
 
     private fun createView(viewGroup: ViewGroup, @LayoutRes itemLayout: Int): View {
@@ -65,15 +54,7 @@ class TasksAdapter : ListAdapter<Task, RecyclerView.ViewHolder>(TasksDiffUtil) {
         }
     }
 
-    inner class TasksHeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //Leave Blank
-    }
-
     companion object {
-
-        const val TYPE_HEADER = 0
-        const val TYPE_ITEM = 1
-
         val TasksDiffUtil = object : DiffUtil.ItemCallback<Task>() {
             override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
                 return oldItem.id == newItem.id

@@ -6,10 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.github.odaridavid.tuli.base.BaseActivity
 import com.github.odaridavid.tuli.commons.navigateTo
 import com.github.odaridavid.tuli.tasks.AddTasksActivity
+import com.github.odaridavid.tuli.tasks.SwipeToDeleteCallback
 import com.github.odaridavid.tuli.tasks.TasksAdapter
 import com.github.odaridavid.tuli.tasks.TasksViewModel
 import dagger.android.AndroidInjection
@@ -40,14 +42,18 @@ class MainActivity : BaseActivity() {
             if (pendingTasks.isNotEmpty()) {
                 backgroundImageView.animate().alpha(0.0f)
                 defaultInfoTextView.animate().alpha(0.0f)
-                tasksRecyclerView.adapter =
-                    AlphaInAnimationAdapter(init { submitList(pendingTasks) })
+                val tasksAdapter = init { submitList(pendingTasks) }
+                val animatedAdapter = AlphaInAnimationAdapter(tasksAdapter)
+                val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(tasksAdapter))
+                itemTouchHelper.attachToRecyclerView(tasksRecyclerView)
+                tasksRecyclerView.adapter = animatedAdapter
             }
         }
     }
 
     private inline fun init(block: TasksAdapter.() -> Unit): TasksAdapter {
-        return TasksAdapter().apply { block() }
+        return TasksAdapter(deleteOperation = { task -> tasksViewModel.delete(task) })
+            .apply { block() }
     }
 
     fun navigateToAddNewTask(view: View) = navigateTo<AddTasksActivity>()
