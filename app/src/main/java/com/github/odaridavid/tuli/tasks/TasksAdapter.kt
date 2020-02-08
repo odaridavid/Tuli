@@ -21,7 +21,6 @@ class TasksAdapter(val deleteOperation: (Task) -> Unit) :
     fun deleteItem(position: Int) {
         val task = getItem(position)
         deleteOperation(task)
-        notifyItemRemoved(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

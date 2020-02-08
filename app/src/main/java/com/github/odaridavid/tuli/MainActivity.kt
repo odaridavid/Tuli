@@ -47,6 +47,10 @@ class MainActivity : BaseActivity() {
                 val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(tasksAdapter))
                 itemTouchHelper.attachToRecyclerView(tasksRecyclerView)
                 tasksRecyclerView.adapter = animatedAdapter
+            } else {
+                backgroundImageView.animate().alpha(1.0f)
+                defaultInfoTextView.animate().alpha(1.0f)
+                tasksRecyclerView.animate().alpha(0.0f)
             }
         }
     }
