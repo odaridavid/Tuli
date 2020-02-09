@@ -34,12 +34,12 @@ internal class AppModule {
     @Provides
     @Named("task_backup")
     internal fun provideTaskBackupWorkRequest(workManager: WorkManager): Operation {
-        val constraints = Constraints.Builder()
-            .setRequiresDeviceIdle(true)
-            .build()
+//        val constraints = Constraints.Builder()
+//            .setRequiresDeviceIdle(true)
+//            .build()
         val backupReq = OneTimeWorkRequestBuilder<TaskBackupWorker>()
-            .setInitialDelay(30, TimeUnit.SECONDS)
-            .setConstraints(constraints)
+            .setInitialDelay(10, TimeUnit.SECONDS)
+//            .setConstraints(constraints)
             .build()
         return workManager.enqueue(backupReq)
     }
