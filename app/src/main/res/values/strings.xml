@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Tuli</string>
     <string name="title_home">Home</string>
+    <string name="title_sign_in">Sign In</string>
+    <string name="cd_default_view_no_tasks">No Tasks Running Image View</string>
+    <string name="info_default_view">Let\'s get started.\n Click on the \'+\' button to add tasks</string>
+    <string name="content_description_hourglass_icon">Hourglass Icon</string>
+    <string name="placeholder_timeline">%1$s - %2$s</string>
+    <string name="add_task_title">Title</string>
+    <string name="hint_task_title">Enter Task Title</string>
+    <string name="title_start_time">Start Time</string>
+    <string name="title_end_time">End Time</string>
+    <string name="label_start">Start</string>
 </resources>

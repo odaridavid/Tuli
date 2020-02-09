@@ -6,14 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_home"
+        app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
     <TextView
+        android:id="@+id/default_view_info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:fontFamily="@font/quicksand_light"
+        android:text="@string/info_default_view"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar" />
+
+    <ImageView
+        android:id="@+id/default_background_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cd_default_view_no_tasks"
+        android:src="@drawable/default_view"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasks_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_task" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_new_task_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        android:fontFamily="@font/quicksand_bold"
-        android:text="@string/title_home"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="@dimen/fab_margin_default"
+        android:onClick="navigateToAddNewTask"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

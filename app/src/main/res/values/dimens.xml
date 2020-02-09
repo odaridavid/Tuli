@@ -2,4 +2,9 @@
 <resources>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_margin">16dp</dimen>
+    <dimen name="fab_margin_default">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="smallest_margin">4dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">0dp</dimen>
 </resources>
