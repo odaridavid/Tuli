@@ -15,7 +15,7 @@ import com.github.odaridavid.tuli.tasks.SwipeToDeleteCallback
 import com.github.odaridavid.tuli.tasks.TasksAdapter
 import com.github.odaridavid.tuli.tasks.TasksViewModel
 import dagger.android.AndroidInjection
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 
 class MainActivity : BaseActivity() {
 
@@ -42,9 +42,9 @@ class MainActivity : BaseActivity() {
             if (pendingTasks.isNotEmpty()) {
                 backgroundImageView.animate().alpha(0.0f)
                 defaultInfoTextView.animate().alpha(0.0f)
-                val tasksAdapter = init { submitList(pendingTasks) }
-                val animatedAdapter = AlphaInAnimationAdapter(tasksAdapter)
-                val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(tasksAdapter))
+                val ta = tasksAdapter { submitList(pendingTasks) }
+                val animatedAdapter = ScaleInAnimationAdapter(ta)
+                val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(ta))
                 itemTouchHelper.attachToRecyclerView(tasksRecyclerView)
                 tasksRecyclerView.adapter = animatedAdapter
             } else {
@@ -55,7 +55,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private inline fun init(block: TasksAdapter.() -> Unit): TasksAdapter {
+    private inline fun tasksAdapter(block: TasksAdapter.() -> Unit): TasksAdapter {
         return TasksAdapter(deleteOperation = { task -> tasksViewModel.delete(task) })
             .apply { block() }
     }

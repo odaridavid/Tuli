@@ -9,7 +9,6 @@ import com.github.odaridavid.tuli.R
 import com.github.odaridavid.tuli.base.BaseActivity
 import com.github.odaridavid.tuli.commons.navigateTo
 import com.github.odaridavid.tuli.commons.requireNotBlank
-import com.github.odaridavid.tuli.commons.showToast
 import dagger.android.AndroidInjection
 import org.threeten.bp.ZonedDateTime
 
@@ -33,9 +32,6 @@ class AddTasksActivity : BaseActivity() {
         }
 
         taskTitleEditText = findViewById(R.id.task_title_edit_text)
-
-        showToast(getCurrentTime())
-
     }
 
     fun onStartTask(view: View) {
