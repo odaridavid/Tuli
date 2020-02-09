@@ -1,10 +1,13 @@
 package com.github.odaridavid.tuli
 
+import androidx.work.Operation
 import com.github.odaridavid.tuli.di.DaggerAppComponent
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Created By David Odari
@@ -12,6 +15,9 @@ import timber.log.Timber
  *
  **/
 class TuliApplication : DaggerApplication() {
+
+    @field:[Inject Named("task_backup")]
+    internal lateinit var taskBackup: Operation
 
     override fun onCreate() {
         super.onCreate()
