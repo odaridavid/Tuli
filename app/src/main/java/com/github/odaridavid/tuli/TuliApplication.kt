@@ -1,6 +1,7 @@
 package com.github.odaridavid.tuli
 
 import androidx.work.Operation
+import com.github.odaridavid.tuli.commons.scheduleDailyRepeatingAlarm
 import com.github.odaridavid.tuli.di.DaggerAppComponent
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
@@ -25,6 +26,8 @@ class TuliApplication : DaggerApplication() {
             Timber.plant(Timber.DebugTree())
 
         AndroidThreeTen.init(this)
+
+        scheduleDailyRepeatingAlarm(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
