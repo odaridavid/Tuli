@@ -72,9 +72,9 @@ class NotificationsProvider {
 }
 
 enum class ChannelID {
-    TEST
+    TEST, ALARM
 }
 
 val NOTIFICATION_CHANNELS: Map<ChannelID, String> by lazy {
-    mapOf(ChannelID.TEST to "test_notification_channel")
+    mapOf(ChannelID.TEST to "test_notification_channel", ChannelID.ALARM to "alarm_channel")
 }
